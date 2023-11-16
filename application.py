@@ -10,7 +10,7 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 
 # local consts
-API_KEY = "2bedf5814a07c017f5e7f25a251493f4"
+API_KEY = "OPENWEATHERMAP_API_KEY"
 LAT, LON = 51.893142, -8.491807
 
 database = DBHandler()
@@ -52,7 +52,4 @@ def add():
     return redirect("/")
 
 if __name__ == '__main__':
-    # Setting debug to True enables debug output. This line should be
-    # removed before deploying a production app.
     application.run('localhost',5000,debug=True)
-

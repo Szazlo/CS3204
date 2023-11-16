@@ -4,7 +4,7 @@ from datetime import datetime
 from awshelper import DBHandler
 import time
 
-app = Flask(__name__)
+application = app = Flask(__name__)
 app.config["SECRET_KEY"] = "Password123"
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -51,4 +51,8 @@ def add():
         f"INSERT INTO weather (time, city, status, temp, wind, humidity) VALUES ('{time}', '{city}', '{weather}', '{temperature}', '{wind}', '{humidity}')")
     return redirect("/")
 
+if __name__ == '__main__':
+    # Setting debug to True enables debug output. This line should be
+    # removed before deploying a production app.
+    application.run('localhost',5000,debug=True)
 

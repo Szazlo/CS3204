@@ -1,10 +1,10 @@
 import pymysql
 
-DB_URL = "awseb-e-prhh5r9jvy-stack-awsebrdsdatabase-ylssjjs9wlx5.csuwvducqdwy.eu-west-1.rds.amazonaws.com"
-DB_PORT = 3306
-DB_USER = "david"
-DB_PASSWORD = "extrem0403"
-DB_SCHEMA = "ebdb"
+DB_URL = "AWS_RDS_URL
+DB_PORT = 3306 #default port
+DB_USER = "DATABASE_USER"
+DB_PASSWORD = "DATABASE_PASSWORD
+DB_SCHEMA = "MAIN_DB"
 
 
 class DBHandler:

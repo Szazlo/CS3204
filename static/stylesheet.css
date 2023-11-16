@@ -1,0 +1,43 @@
+html{
+  margin: 0 10px;
+}
+ 
+input {
+  border-radius: 23px;
+  border: 2px solid skyblue;
+  background-color: white;
+  color: black;
+  padding: 4px 10px;
+  display: inline;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 2px;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 1px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+/* keep footer at the end of the page */
+html, body {
+  height: 100%;
+  margin: 0 10px;
+  padding: 0;
+}
+
+footer {
+  margin-top: auto;
+}
+

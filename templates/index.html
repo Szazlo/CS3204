@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+    <h5>Current Weather</h5>
+    <div class="row"><p>{{ data.time }}</p></div>
+    <div class="row">
+        <div class="col-sm-2">
+            <b>City</b>
+            <p>{{ data.city }}</p>
+        </div>
+        <div class="col-sm-2">
+            <b>Weather</b>
+            <p>{{ data.weather }}</p>
+        </div>
+        <div class="col-sm-2">
+            <b>Temperature</b>
+            <p>{{ data.temperature }}</p>
+        </div>
+        <div class="col-sm-2">
+            <b>Wind Speed</b>
+            <p>{{ data.wind }}</p>
+        </div>
+        <div class="col-sm-2">
+            <b>Humidity</b>
+            <p>{{ data.humidity }}</p>
+        </div>
+    </div>
+    <table class="table">
+        <tr>
+            <th scope="col">Time</th>
+            <th scope="col">City</th>
+            <th scope="col">Weather</th>
+            <th scope="col">Temperature</th>
+            <th scope="col">Wind Speed</th>
+            <th scope="col">Humidity</th>
+        </tr>
+        {% for entry in table %}
+            <tr>
+                <td>{{ entry.time }}</td>
+                <td>{{ entry.city }}</td>
+                <td>{{ entry.status }}</td>
+                <td>{{ entry.temp }}</td>
+                <td>{{ entry.wind }}</td>
+                <td>{{ entry.humidity }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <div><a href="{{ url_for('add') }}" class="btn btn-outline-success btn-md">Add to Database</a></div>
+
+{% endblock %}

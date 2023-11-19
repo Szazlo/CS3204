@@ -1,8 +1,9 @@
-from flask import Flask, render_template, redirect, url_for
-import requests
 from datetime import datetime
+
+import requests
+from flask import Flask, render_template, redirect
+
 from awshelper import DBHandler
-import time
 
 application = app = Flask(__name__)
 app.config["SECRET_KEY"] = "Password123"
@@ -17,7 +18,7 @@ database = DBHandler()
 
 
 def get_weather_data(city):
-    """This function will get the weather data from the API and return it as a dict."""
+    """get the weather data from the API and return it as a dict."""
     url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric"
     r = requests.get(url).json()
     r = parser_weather_data(r)
@@ -25,7 +26,7 @@ def get_weather_data(city):
 
 
 def parser_weather_data(data):
-    """This function will parse the data from the API and return it as a dict."""
+    """parse the data from the API and return it as a dict."""
     time = datetime.now().strftime("%D | %H:%M:%S")
     city = data["name"]
     weather = data["weather"][0]["main"]
@@ -35,8 +36,10 @@ def parser_weather_data(data):
     return {"time": time, "city": city, "weather": weather, "temperature": temperature, "wind": wind,
             "humidity": humidity}
 
+
 @app.route("/")
 def index():
+    """render the home page."""
     data = get_weather_data("Cork")
     table = database.execute("SELECT * FROM weather")
     return render_template("index.html", data=data, table=table)
@@ -44,12 +47,14 @@ def index():
 
 @app.route("/add")
 def add():
-    """This function will add an entry to the database."""
+    """add an entry to the database."""
     data = get_weather_data("Cork")
-    time, city, weather, temperature, wind, humidity = data["time"], data["city"], data["weather"], data["temperature"], data["wind"], data["humidity"]
+    time, city, weather, temperature, wind, humidity = data["time"], data["city"], data["weather"], data["temperature"], \
+    data["wind"], data["humidity"]
     database.execute(
         f"INSERT INTO weather (time, city, status, temp, wind, humidity) VALUES ('{time}', '{city}', '{weather}', '{temperature}', '{wind}', '{humidity}')")
     return redirect("/")
 
-if __name__ == '__main__':
-    application.run('localhost',5000,debug=True)
+
+if __name__ == '__main__':  # used to start the server on EB
+    application.run('localhost', 5000, debug=True)
